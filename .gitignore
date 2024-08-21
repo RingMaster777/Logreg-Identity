@@ -1,0 +1,28 @@
+# ASP.NET Core
+Logreg-Identity/bin/
+Logreg-Identity/obj/
+
+# Visual Studio
+Logreg-Identity/.vs/
+Logreg-Identity/*.user
+Logreg-Identity/*.suo
+
+# NuGet Packages
+Logreg-Identity/packages/
+
+# Build results
+Logreg-Identity/dist/
+Logreg-Identity/out/
+
+# Secrets and environment files
+Logreg-Identity/secrets.json
+Logreg-Identity/*.env
+
+# Logs and temp files
+Logreg-Identity/*.log
+Logreg-Identity/*.tmp
+Logreg-Identity/*.swp
+
+# OS-specific
+Logreg-Identity/.DS_Store
+Logreg-Identity/Thumbs.db

@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35122.118
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogReg-Identity", "LogReg-Identity\LogReg-Identity.csproj", "{538FC953-9A33-4B0A-93BE-81FB5D4A15EB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogReg-Identity-Test", "LogReg-Identity-Test\LogReg-Identity-Test.csproj", "{C412C591-50D3-4D89-8598-AB90499E0560}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{538FC953-9A33-4B0A-93BE-81FB5D4A15EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{538FC953-9A33-4B0A-93BE-81FB5D4A15EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{538FC953-9A33-4B0A-93BE-81FB5D4A15EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{538FC953-9A33-4B0A-93BE-81FB5D4A15EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C412C591-50D3-4D89-8598-AB90499E0560}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C412C591-50D3-4D89-8598-AB90499E0560}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C412C591-50D3-4D89-8598-AB90499E0560}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C412C591-50D3-4D89-8598-AB90499E0560}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {080AF69D-6A2C-4A5E-AF70-F41CF4DD4A1E}
+	EndGlobalSection
+EndGlobal

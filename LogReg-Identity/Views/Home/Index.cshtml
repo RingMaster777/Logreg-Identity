@@ -1,0 +1,72 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    @if (ViewBag.Users != null)
+    {
+        <h2>All Users</h2>
+        <table class="table table-hover custom-table">
+            <thead>
+                <tr>
+                    <th scope="col">User Id</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Role</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in ViewBag.Users)
+                {
+                    @if (user.Role != "Admin")
+                    {
+                        <tr class="table-light">
+                            <td>@user.Id</td>
+                            <td>@user.FirstName @user.LastName</td>
+                            <td>@user.Email</td>
+                            <td>@user.Role</td>
+                            <td class="text-center">
+                                <div class="btn-group btn-group-sm"><a asp-controller="Home" asp-action="UserDetails" asp-route-id="@user.Id" class="btn btn-primary">View Details</a></div>
+                            </td>
+                        </tr>
+
+                    }
+
+                }
+            </tbody>
+        </table>
+    }
+    else if (ViewBag.MemberName != null)
+    {
+        <h2>Welcome, @ViewBag.MemberName!</h2>
+        <p>Access level - Memeber</p>
+    }
+    else
+    {
+        <h2>Welcome to our site!</h2>
+    }
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+
+<style>
+    .custom-table {
+        border: 2px solid #dee2e6; /* Outer border of the table */
+        border-collapse: collapse; /* Ensures borders between cells are merged */
+    }
+
+        .custom-table th, .custom-table td {
+            border: 1px solid #dee2e6; /* Borders between columns and rows */
+            padding: 8px; /* Optional: Adds padding for better readability */
+        }
+
+        .custom-table th {
+            background-color: #f8f9fa; /* Optional: Background color for headers */
+        }
+
+</style>
