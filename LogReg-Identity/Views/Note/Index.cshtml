@@ -1,0 +1,71 @@
+﻿@model IEnumerable<NoteModel>
+
+@{
+    ViewData["Title"] = "Note List";
+}
+
+<div class="shadow p-3 my-5 bg-white rounded d-flex justify-content-between">
+    <h1>@ViewData["Title"]</h1>
+
+    <div class="mt-2">
+        <a class="btn btn-success" style="width:150px" asp-controller="Note" asp-action="Create">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
+            </svg>
+            Add Note
+        </a>
+    </div>
+</div>
+
+<div>
+    <table class="table table-bordered table-striped" style="width=100%">
+        <thead>
+            <tr>
+                <th>
+                    Note Id
+                </th>
+                <th>
+                    Note Title
+                </th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            @if (Model != null && Model.Any())
+            {
+                @foreach (var obj in Model)
+                {
+                    <tr>
+                        <td>
+                            @obj.NoteId
+                        </td>
+                        <td>
+                            @obj.NoteTitle
+                        </td>
+                        <td class="text-center">
+                            <div class="btn-group btn-group-sm"><a asp-action="Edit" asp-route-id="@obj.NoteId" class="btn btn-primary">View Details</a></div>
+                        </td>
+                    </tr>
+                }
+
+            }
+            else
+            {
+                <tr>
+                    <td colspan="4">
+                        <div>
+                            No Notes Available
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

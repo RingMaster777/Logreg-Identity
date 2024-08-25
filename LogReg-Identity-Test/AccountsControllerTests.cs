@@ -46,14 +46,26 @@ public class AccountControllerTests
         _mockUserManager = new Mock<UserManager<ApplicationUser>>(
             _mockUserStore.Object,
             //_mockEmailStore.Object,
-            null, null, null, null, null, null, null, null);
+            null, 
+            null, 
+            null, 
+            null, 
+            null, 
+            null, 
+            null, 
+            null
+        );
 
         // Mock SignInManager
         _mockSignInManager = new Mock<SignInManager<ApplicationUser>>(
             _mockUserManager.Object,
             Mock.Of<IHttpContextAccessor>(),
             Mock.Of<IUserClaimsPrincipalFactory<ApplicationUser>>(),
-            null, null, null, null);
+            null, 
+            null, 
+            null, 
+            null
+        );
 
         // Mock Logger for LoginModel
         _mockLogger = new Mock<ILogger<LoginModel>>();

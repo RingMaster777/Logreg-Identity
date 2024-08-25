@@ -46,3 +46,33 @@ button.accept-policy {
   white-space: nowrap;
   line-height: 60px;
 }
+
+
+/* General Resets */
+/*html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}*/
+
+/* Flexbox Layout for Sticky Footer */
+/*body {
+    display: flex;
+    flex-direction: column;
+}*/
+
+/* Ensure Content Wrapper Takes Remaining Space */
+/*.content-wrapper {
+    flex: 1;
+}*/
+
+/* Footer Styles */
+/*footer {
+    height: 60px;*/ /* Adjust based on your footer height */
+    /*background-color: #f1f1f1;*/ /* Footer background color */
+    /*color: #fff;*/ /* Text color */
+    /*line-height: 60px;*/ /* Vertically center text */
+    /*text-align: center;*/ /* Center text horizontally */
+    /*position: relative;*/ /* Ensure footer stays at the bottom */
+    /*width: 100%;*/ /* Full width */
+/*}*/

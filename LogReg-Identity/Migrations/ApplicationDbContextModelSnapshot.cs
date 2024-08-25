@@ -17,7 +17,7 @@ namespace LogReg_Identity.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.7")
+                .HasAnnotation("ProductVersion", "8.0.8")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -64,9 +64,6 @@ namespace LogReg_Identity.Migrations
                     b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Phone")
-                        .HasColumnType("nvarchar(100)");
-
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
@@ -94,6 +91,122 @@ namespace LogReg_Identity.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+                });
+
+            modelBuilder.Entity("LogReg_Identity.Models.NoteModel", b =>
+                {
+                    b.Property<int>("NoteId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("NoteId"));
+
+                    b.Property<string>("NoteDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NoteTitle")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("NoteId");
+
+                    b.ToTable("Notes");
+                });
+
+            modelBuilder.Entity("LogReg_Identity.Models.Permission", b =>
+                {
+                    b.Property<int>("PermissionId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PermissionId"));
+
+                    b.Property<string>("PermissionName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("PermissionId");
+
+                    b.ToTable("Permissions");
+
+                    b.HasData(
+                        new
+                        {
+                            PermissionId = 1,
+                            PermissionName = "POST"
+                        },
+                        new
+                        {
+                            PermissionId = 2,
+                            PermissionName = "GET"
+                        },
+                        new
+                        {
+                            PermissionId = 3,
+                            PermissionName = "PATCH"
+                        },
+                        new
+                        {
+                            PermissionId = 4,
+                            PermissionName = "DELETE"
+                        });
+                });
+
+            modelBuilder.Entity("LogReg_Identity.Models.RolePermission", b =>
+                {
+                    b.Property<int>("RpId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RpId"));
+
+                    b.Property<int>("PermissionId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("RoleId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("RpId");
+
+                    b.HasIndex("PermissionId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("RolePermissions");
+
+                    b.HasData(
+                        new
+                        {
+                            RpId = 1,
+                            PermissionId = 1,
+                            RoleId = "4f5e2154-92cd-4ad8-95b3-82b1a1acfed3"
+                        },
+                        new
+                        {
+                            RpId = 2,
+                            PermissionId = 2,
+                            RoleId = "4f5e2154-92cd-4ad8-95b3-82b1a1acfed3"
+                        },
+                        new
+                        {
+                            RpId = 3,
+                            PermissionId = 3,
+                            RoleId = "4f5e2154-92cd-4ad8-95b3-82b1a1acfed3"
+                        },
+                        new
+                        {
+                            RpId = 4,
+                            PermissionId = 4,
+                            RoleId = "4f5e2154-92cd-4ad8-95b3-82b1a1acfed3"
+                        },
+                        new
+                        {
+                            RpId = 5,
+                            PermissionId = 2,
+                            RoleId = "5bc96774-6718-44ff-857a-3644c8546ad0"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -231,6 +344,25 @@ namespace LogReg_Identity.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
+                });
+
+            modelBuilder.Entity("LogReg_Identity.Models.RolePermission", b =>
+                {
+                    b.HasOne("LogReg_Identity.Models.Permission", "Permission")
+                        .WithMany()
+                        .HasForeignKey("PermissionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", "Role")
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Permission");
+
+                    b.Navigation("Role");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

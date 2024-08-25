@@ -7,7 +7,6 @@ D:\Rashik Mahmud\VS\LogReg-Identity\LogReg-Identity-Test\bin\Debug\net8.0\appset
 D:\Rashik Mahmud\VS\LogReg-Identity\LogReg-Identity-Test\bin\Debug\net8.0\LogReg-Identity.staticwebassets.runtime.json
 D:\Rashik Mahmud\VS\LogReg-Identity\LogReg-Identity-Test\bin\Debug\net8.0\LogReg-Identity.exe
 D:\Rashik Mahmud\VS\LogReg-Identity\LogReg-Identity-Test\bin\Debug\net8.0\testhost.exe
-D:\Rashik Mahmud\VS\LogReg-Identity\LogReg-Identity-Test\bin\Debug\net8.0\xunit.runner.visualstudio.dotnetcore.testadapter.dll
 D:\Rashik Mahmud\VS\LogReg-Identity\LogReg-Identity-Test\bin\Debug\net8.0\xunit.runner.reporters.netcoreapp10.dll
 D:\Rashik Mahmud\VS\LogReg-Identity\LogReg-Identity-Test\bin\Debug\net8.0\xunit.runner.utility.netcoreapp10.dll
 D:\Rashik Mahmud\VS\LogReg-Identity\LogReg-Identity-Test\bin\Debug\net8.0\LogReg-Identity-Test.deps.json
@@ -343,3 +342,6 @@ D:\Rashik Mahmud\VS\LogReg-Identity\LogReg-Identity-Test\bin\Debug\net8.0\Serilo
 D:\Rashik Mahmud\VS\LogReg-Identity\LogReg-Identity-Test\bin\Debug\net8.0\Serilog.Sinks.Console.dll
 D:\Rashik Mahmud\VS\LogReg-Identity\LogReg-Identity-Test\bin\Debug\net8.0\Serilog.Sinks.Debug.dll
 D:\Rashik Mahmud\VS\LogReg-Identity\LogReg-Identity-Test\bin\Debug\net8.0\Serilog.Sinks.File.dll
+D:\Rashik Mahmud\VS\LogReg-Identity\LogReg-Identity-Test\obj\Debug\net8.0\LogReg-Identity-Test.sourcelink.json
+D:\Rashik Mahmud\VS\LogReg-Identity\LogReg-Identity-Test\bin\Debug\net8.0\.msCoverageSourceRootsMapping_LogReg-Identity-Test
+D:\Rashik Mahmud\VS\LogReg-Identity\LogReg-Identity-Test\bin\Debug\net8.0\xunit.runner.visualstudio.testadapter.dll

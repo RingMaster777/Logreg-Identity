@@ -73,6 +73,25 @@ namespace LogReg_Identity.Controllers
         }
 
 
+
+
+        [HttpGet]
+        public IActionResult Edit(string id)
+        {
+            ViewBag.Id = id;
+            return View();
+        }       
+
+        [HttpPost]
+        public IActionResult Delete(string id)
+        {
+            ViewBag.Id = id;
+            return View();
+        }
+
+
+
+
         [HttpPost]
 
         public async Task<IActionResult> AssignRole (string userId, string role)

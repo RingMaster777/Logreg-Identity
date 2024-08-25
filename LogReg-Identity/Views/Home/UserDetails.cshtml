@@ -28,8 +28,8 @@
         {
             <div class="d-flex justify-content-between">
 
-                <a class="btn btn-dark bg-primary" href="#">Edit</a>
-                <a class="btn btn-dark bg-primary-sutle" href="#">delete</a>
+                <a class="btn btn-dark bg-primary" asp-controller="Home" asp-action="Edit" asp-route-id="@ViewBag.userId">Edit</a>
+                <a class="btn btn-dark bg-primary-sutle" asp-controller="Home" asp-action="Delete" asp-route-id="@ViewBag.userId">delete</a>
 
             </div>
 

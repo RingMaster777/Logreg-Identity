@@ -1,0 +1,53 @@
+﻿@model NoteModel
+@{
+    ViewData["Title"] = "Create Employee";
+}
+<div class="shadow p-3 my-5 bg-white rounded">
+    <h1>Create a New Note</h1>
+</div>
+
+<div class="container border p-3 ">
+    <form asp-action="Create" method="post">
+
+        @if (!ViewData.ModelState.IsValid)
+        {
+            <div class="alert alert-danger">
+                @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                {
+                    <p>@error.ErrorMessage</p>
+                }
+            </div>
+        }
+
+
+        <!-- General Information -->
+        <div class="container mt-5">
+            <div class="form-group py-3">
+                <label asp-for="NoteTitle" class="control-label">Note title</label>
+                <input asp-for="NoteTitle" class="form-control" placeholder="Enter a Unique Value [Required]" />
+                <span asp-validation-for="NoteTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group col">
+            <label asp-for="NoteDescription" class="control-label">First Name</label>
+            <input asp-for="NoteDescription" class="form-control" placeholder="[Required]" />
+            <span asp-validation-for="NoteDescription" class="text-danger"></span>
+            </div>
+        </div>
+
+
+
+
+        <div class="form-group my-5 px-3 d-flex justify-content-between">
+            <button type="submit" class="btn btn-primary" style="width:150px">Create Note</button>
+            @* <a asp-action="Index" class="btn btn-secondary" style="width:150px">Reset</a> *@
+            <input type="reset" value="Reset" class="btn btn-secondary" />
+        </div>
+    </form>
+</div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

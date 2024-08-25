@@ -51,6 +51,7 @@ else
 }
 
 // Register the custom exception handling middleware
+app.UseMiddleware<PermissionMiddleware>();
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.UseHttpsRedirection();
