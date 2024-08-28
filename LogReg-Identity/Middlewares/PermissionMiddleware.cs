@@ -1,5 +1,5 @@
-﻿using LogReg_Identity.Areas.Identity.Data;
-using LogReg_Identity.Data;
+﻿using LogReg_Identity.Data;
+using LogReg_Identity.Models;
 using Microsoft.AspNetCore.Identity;
 
 namespace LogReg_Identity.Middlewares

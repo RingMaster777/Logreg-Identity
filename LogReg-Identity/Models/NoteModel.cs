@@ -1,7 +1,4 @@
-﻿using LogReg_Identity.Areas.Identity.Data;
-using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace LogReg_Identity.Models
 {

@@ -50,6 +50,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Microsoft.CodeCoverage": {
+              "target": "Package",
+              "version": "[17.11.0, )"
+            },
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
               "version": "[17.11.0, )"
@@ -140,6 +144,10 @@
             "Microsoft.AspNetCore.Identity.UI": {
               "target": "Package",
               "version": "[8.0.8, )"
+            },
+            "Microsoft.CodeCoverage": {
+              "target": "Package",
+              "version": "[17.11.0, )"
             },
             "Microsoft.EntityFrameworkCore.InMemory": {
               "target": "Package",

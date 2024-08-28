@@ -1,4 +1,3 @@
-using LogReg_Identity.Areas.Identity.Data;
 using LogReg_Identity.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;

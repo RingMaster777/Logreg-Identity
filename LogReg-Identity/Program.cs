@@ -1,9 +1,11 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using LogReg_Identity.Data;
-using LogReg_Identity.Areas.Identity.Data;
 using Serilog;
 using LogReg_Identity.Middlewares;
+using LogReg_Identity.Models;
+using LogReg_Identity.Repository.IRepository;
+using LogReg_Identity.Repository;
 var builder = WebApplication.CreateBuilder(args);
 
 
@@ -25,6 +27,9 @@ builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlSer
 builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
+
+
+builder.Services.AddScoped<INoteRepository, NoteRepository>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

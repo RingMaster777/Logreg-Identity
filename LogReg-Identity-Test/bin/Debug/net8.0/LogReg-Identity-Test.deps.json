@@ -9,6 +9,7 @@
       "LogReg-Identity-Test/1.0.0": {
         "dependencies": {
           "LogReg-Identity": "1.0.0",
+          "Microsoft.CodeCoverage": "17.11.0",
           "Microsoft.NET.Test.Sdk": "17.11.0",
           "coverlet.collector": "6.0.2",
           "xunit": "2.9.0",
@@ -2418,6 +2419,7 @@
         "dependencies": {
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "8.0.8",
           "Microsoft.AspNetCore.Identity.UI": "8.0.8",
+          "Microsoft.CodeCoverage": "17.11.0",
           "Microsoft.EntityFrameworkCore.InMemory": "8.0.8",
           "Microsoft.EntityFrameworkCore.SqlServer": "8.0.8",
           "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": "1.21.0",

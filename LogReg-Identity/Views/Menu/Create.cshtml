@@ -1,0 +1,58 @@
+﻿@using LogReg_Identity.Models.ViewModel
+
+@model MenuVM
+@{
+    ViewData["Title"] = "Create Employee";
+}
+<div class="shadow p-3 my-5 bg-white rounded">
+    <h1>Create a New Note</h1>
+</div>
+
+<div class="container border p-3 ">
+    <form asp-action="Create" method="post">
+
+        @if (!ViewData.ModelState.IsValid)
+        {
+            <div class="alert alert-danger">
+                @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                {
+                    <p>@error.ErrorMessage</p>
+                }
+            </div>
+        }
+
+        <div class="container mt-5">
+            <div class="form-group py-3">
+                <label asp-for="MenuName" class="control-label"></label>
+                <input asp-for="MenuName" class="form-control" placeholder="[Required]" />
+                <span asp-validation-for="MenuName" class="text-danger"></span>
+            </div>
+            <div class="form-group col">
+                <label asp-for="ParentName" class="control-label"></label>
+                <select asp-for="ParentName" class="form-control" asp-items="@ViewBag.Menus"></select>
+                <span asp-validation-for="ParentName" class="text-danger"></span>
+            </div>
+            <div class="form-group col">
+                <label asp-for="AssignTo" class="control-label"></label>
+                <select asp-for="AssignTo" class="form-control" asp-items="@ViewBag.Roles" multiple="multiple"></select>
+                <span asp-validation-for="AssignTo" class="text-danger"></span>
+            </div>
+        </div>
+
+
+
+
+        <div class="form-group my-5 px-3 d-flex justify-content-between">
+            <button type="submit" class="btn btn-primary" style="width:150px">Add Menu</button>
+            @* <a asp-action="Index" class="btn btn-secondary" style="width:150px">Reset</a> *@
+            <input type="reset" value="Reset" class="btn btn-secondary" />
+        </div>
+    </form>
+</div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

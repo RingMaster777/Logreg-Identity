@@ -10,6 +10,7 @@
         "dependencies": {
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "8.0.8",
           "Microsoft.AspNetCore.Identity.UI": "8.0.8",
+          "Microsoft.CodeCoverage": "17.11.0",
           "Microsoft.EntityFrameworkCore.InMemory": "8.0.8",
           "Microsoft.EntityFrameworkCore.SqlServer": "8.0.8",
           "Microsoft.EntityFrameworkCore.Tools": "8.0.8",
@@ -1111,6 +1112,14 @@
           },
           "lib/net7.0/zh-Hant/Microsoft.CodeAnalysis.Workspaces.resources.dll": {
             "locale": "zh-Hant"
+          }
+        }
+      },
+      "Microsoft.CodeCoverage/17.11.0": {
+        "runtime": {
+          "lib/netcoreapp3.1/Microsoft.VisualStudio.CodeCoverage.Shim.dll": {
+            "assemblyVersion": "15.0.0.0",
+            "fileVersion": "17.1100.424.36701"
           }
         }
       },
@@ -2689,6 +2698,13 @@
       "sha512": "sha512-LXyV+MJKsKRu3FGJA3OmSk40OUIa/dQCFLOnm5X8MNcujx7hzGu8o+zjXlb/cy5xUdZK2UKYb9YaQ2E8m9QehQ==",
       "path": "microsoft.codeanalysis.workspaces.common/4.8.0",
       "hashPath": "microsoft.codeanalysis.workspaces.common.4.8.0.nupkg.sha512"
+    },
+    "Microsoft.CodeCoverage/17.11.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-QKcOSuw7MZG4XiQ+pCj+Ib6amOwoRDEO7e3DbxqXeOPXSnfyGXYoZQI8I140s1mKQVn1Vh+c5WlKvCvlgMovpg==",
+      "path": "microsoft.codecoverage/17.11.0",
+      "hashPath": "microsoft.codecoverage.17.11.0.nupkg.sha512"
     },
     "Microsoft.CSharp/4.5.0": {
       "type": "package",

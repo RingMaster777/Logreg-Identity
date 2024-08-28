@@ -2,11 +2,11 @@ using Moq;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Mvc;
-using LogReg_Identity.Areas.Identity.Data;
 using LogReg_Identity.Areas.Identity.Pages.Account;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using LogReg_Identity.Models;
 
 public class AccountControllerTests
 {
@@ -20,7 +20,7 @@ public class AccountControllerTests
 
     private readonly Mock<ILogger<RegisterModel>> _mockRegisterLogger;
     private readonly RegisterModel _registerModel;
-    
+
     private readonly Mock<IEmailSender> _mockEmailSender;
     private readonly Mock<IUserStore<ApplicationUser>> _mockUserStore;
 
@@ -46,13 +46,13 @@ public class AccountControllerTests
         _mockUserManager = new Mock<UserManager<ApplicationUser>>(
             _mockUserStore.Object,
             //_mockEmailStore.Object,
-            null, 
-            null, 
-            null, 
-            null, 
-            null, 
-            null, 
-            null, 
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
             null
         );
 
@@ -61,9 +61,9 @@ public class AccountControllerTests
             _mockUserManager.Object,
             Mock.Of<IHttpContextAccessor>(),
             Mock.Of<IUserClaimsPrincipalFactory<ApplicationUser>>(),
-            null, 
-            null, 
-            null, 
+            null,
+            null,
+            null,
             null
         );
 
