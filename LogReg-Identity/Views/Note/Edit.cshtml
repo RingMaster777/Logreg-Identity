@@ -1,15 +1,14 @@
-﻿@model NoteModel
-@{
-    ViewData["Title"] = "Edit Employee";
-}
+﻿@using LogReg_Identity.Models.ViewModel
 
+
+@model NoteVM
 
 <div class="shadow p-3 my-5 bg-white rounded">
-    <h1>Employee Details - ERP-@Model.NoteId</h1>
+    <h3>Employee Details - ERP-@Model.NoteId</h3>
 </div>
 
 <div class="container border p-3 ">
-    <form asp-action="Edit" method="post">
+    <form asp-controller="Note" asp-action="Edit" method="post">
 
         @if (!ViewData.ModelState.IsValid)
         {

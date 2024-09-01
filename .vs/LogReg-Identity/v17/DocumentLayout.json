@@ -3,24 +3,16 @@
   "WorkspaceRootPath": "D:\\Rashik Mahmud\\VS\\LogReg-Identity\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{538FC953-9A33-4B0A-93BE-81FB5D4A15EB}|LogReg-Identity\\LogReg-Identity.csproj|d:\\rashik mahmud\\vs\\logreg-identity\\logreg-identity\\views\\note\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{538FC953-9A33-4B0A-93BE-81FB5D4A15EB}|LogReg-Identity\\LogReg-Identity.csproj|solutionrelative:logreg-identity\\views\\note\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{538FC953-9A33-4B0A-93BE-81FB5D4A15EB}|LogReg-Identity\\LogReg-Identity.csproj|d:\\rashik mahmud\\vs\\logreg-identity\\logreg-identity\\views\\menu\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{538FC953-9A33-4B0A-93BE-81FB5D4A15EB}|LogReg-Identity\\LogReg-Identity.csproj|solutionrelative:logreg-identity\\views\\menu\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{538FC953-9A33-4B0A-93BE-81FB5D4A15EB}|LogReg-Identity\\LogReg-Identity.csproj|d:\\rashik mahmud\\vs\\logreg-identity\\logreg-identity\\repository\\irepository\\inoterepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{538FC953-9A33-4B0A-93BE-81FB5D4A15EB}|LogReg-Identity\\LogReg-Identity.csproj|solutionrelative:logreg-identity\\repository\\irepository\\inoterepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{538FC953-9A33-4B0A-93BE-81FB5D4A15EB}|LogReg-Identity\\LogReg-Identity.csproj|d:\\rashik mahmud\\vs\\logreg-identity\\logreg-identity\\repository\\noterepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{538FC953-9A33-4B0A-93BE-81FB5D4A15EB}|LogReg-Identity\\LogReg-Identity.csproj|solutionrelative:logreg-identity\\repository\\noterepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{538FC953-9A33-4B0A-93BE-81FB5D4A15EB}|LogReg-Identity\\LogReg-Identity.csproj|d:\\rashik mahmud\\vs\\logreg-identity\\logreg-identity\\views\\note\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{538FC953-9A33-4B0A-93BE-81FB5D4A15EB}|LogReg-Identity\\LogReg-Identity.csproj|solutionrelative:logreg-identity\\views\\note\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{538FC953-9A33-4B0A-93BE-81FB5D4A15EB}|LogReg-Identity\\LogReg-Identity.csproj|d:\\rashik mahmud\\vs\\logreg-identity\\logreg-identity\\controllers\\notecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{538FC953-9A33-4B0A-93BE-81FB5D4A15EB}|LogReg-Identity\\LogReg-Identity.csproj|solutionrelative:logreg-identity\\controllers\\notecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{538FC953-9A33-4B0A-93BE-81FB5D4A15EB}|LogReg-Identity\\LogReg-Identity.csproj|d:\\rashik mahmud\\vs\\logreg-identity\\logreg-identity\\repository\\repository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{538FC953-9A33-4B0A-93BE-81FB5D4A15EB}|LogReg-Identity\\LogReg-Identity.csproj|solutionrelative:logreg-identity\\repository\\repository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -46,68 +38,40 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "INoteRepository.cs",
-              "DocumentMoniker": "D:\\Rashik Mahmud\\VS\\LogReg-Identity\\LogReg-Identity\\Repository\\IRepository\\INoteRepository.cs",
-              "RelativeDocumentMoniker": "LogReg-Identity\\Repository\\IRepository\\INoteRepository.cs",
-              "ToolTip": "D:\\Rashik Mahmud\\VS\\LogReg-Identity\\LogReg-Identity\\Repository\\IRepository\\INoteRepository.cs",
-              "RelativeToolTip": "LogReg-Identity\\Repository\\IRepository\\INoteRepository.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-28T09:28:24.506Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Repository.cs",
-              "DocumentMoniker": "D:\\Rashik Mahmud\\VS\\LogReg-Identity\\LogReg-Identity\\Repository\\Repository.cs",
-              "RelativeDocumentMoniker": "LogReg-Identity\\Repository\\Repository.cs",
-              "ToolTip": "D:\\Rashik Mahmud\\VS\\LogReg-Identity\\LogReg-Identity\\Repository\\Repository.cs",
-              "RelativeToolTip": "LogReg-Identity\\Repository\\Repository.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-28T09:27:16.134Z",
+              "DocumentIndex": 0,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\Rashik Mahmud\\VS\\LogReg-Identity\\LogReg-Identity\\Views\\Menu\\Index.cshtml",
+              "RelativeDocumentMoniker": "LogReg-Identity\\Views\\Menu\\Index.cshtml",
+              "ToolTip": "D:\\Rashik Mahmud\\VS\\LogReg-Identity\\LogReg-Identity\\Views\\Menu\\Index.cshtml",
+              "RelativeToolTip": "LogReg-Identity\\Views\\Menu\\Index.cshtml",
+              "ViewState": "AQIAAEAAAAAAAAAAAADwv0oAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-08-29T11:36:12.577Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "NoteRepository.cs",
-              "DocumentMoniker": "D:\\Rashik Mahmud\\VS\\LogReg-Identity\\LogReg-Identity\\Repository\\NoteRepository.cs",
-              "RelativeDocumentMoniker": "LogReg-Identity\\Repository\\NoteRepository.cs",
-              "ToolTip": "D:\\Rashik Mahmud\\VS\\LogReg-Identity\\LogReg-Identity\\Repository\\NoteRepository.cs",
-              "RelativeToolTip": "LogReg-Identity\\Repository\\NoteRepository.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-28T09:06:11.104Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
               "Title": "NoteController.cs",
               "DocumentMoniker": "D:\\Rashik Mahmud\\VS\\LogReg-Identity\\LogReg-Identity\\Controllers\\NoteController.cs",
               "RelativeDocumentMoniker": "LogReg-Identity\\Controllers\\NoteController.cs",
               "ToolTip": "D:\\Rashik Mahmud\\VS\\LogReg-Identity\\LogReg-Identity\\Controllers\\NoteController.cs",
               "RelativeToolTip": "LogReg-Identity\\Controllers\\NoteController.cs",
-              "ViewState": "AQIAAF0AAAAAAAAAAAAWwGwAAAAxAAAA",
+              "ViewState": "AQIAAH4AAAAAAAAAAAAmwCMAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-28T09:02:28.348Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-29T10:09:37.338Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Edit.cshtml",
-              "DocumentMoniker": "D:\\Rashik Mahmud\\VS\\LogReg-Identity\\LogReg-Identity\\Views\\Note\\Edit.cshtml",
-              "RelativeDocumentMoniker": "LogReg-Identity\\Views\\Note\\Edit.cshtml",
-              "ToolTip": "D:\\Rashik Mahmud\\VS\\LogReg-Identity\\LogReg-Identity\\Views\\Note\\Edit.cshtml",
-              "RelativeToolTip": "LogReg-Identity\\Views\\Note\\Edit.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAEAAAA",
+              "DocumentIndex": 1,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\Rashik Mahmud\\VS\\LogReg-Identity\\LogReg-Identity\\Views\\Note\\Index.cshtml",
+              "RelativeDocumentMoniker": "LogReg-Identity\\Views\\Note\\Index.cshtml",
+              "ToolTip": "D:\\Rashik Mahmud\\VS\\LogReg-Identity\\LogReg-Identity\\Views\\Note\\Index.cshtml",
+              "RelativeToolTip": "LogReg-Identity\\Views\\Note\\Index.cshtml",
+              "ViewState": "AQIAAC4AAAAAAAAAAAAAwCoAAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-08-28T09:02:46.418Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-29T10:05:42.467Z"
             }
           ]
         }

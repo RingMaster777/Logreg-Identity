@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LogReg-Identity-Test")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+22c7d1d3bfbe765d5e7cdd87e629fb045670fcdf")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+426fd67ceed4ebf65d151c54940215af606ae771")]
 [assembly: System.Reflection.AssemblyProductAttribute("LogReg-Identity-Test")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LogReg-Identity-Test")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

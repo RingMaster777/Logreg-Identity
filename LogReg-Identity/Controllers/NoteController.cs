@@ -1,33 +1,50 @@
-﻿using LogReg_Identity.Data;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
 using LogReg_Identity.Models;
+using LogReg_Identity.Models.ViewModel;
 using LogReg_Identity.Repository.IRepository;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace LogReg_Identity.Controllers
 {
     public class NoteController : Controller
     {
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        private readonly INoteRepository _noteRepository;
-        private readonly SignInManager<ApplicationUser> _signInManager;
-        public NoteController(INoteRepository noteRepository, SignInManager<ApplicationUser> signInManager)
+        public NoteController(IUnitOfWork unitOfWork, UserManager<ApplicationUser> userManager)
         {
-            _signInManager = signInManager;
-            _noteRepository = noteRepository;
-
+            _unitOfWork = unitOfWork;
+            _userManager = userManager;
         }
-        public IActionResult Index()
+
+        public async Task<IActionResult> Index()
         {
             IEnumerable<NoteModel> notes = null;
-            if (_signInManager.IsSignedIn(User))
+            if (!User.Identity.IsAuthenticated)
             {
-                notes = _noteRepository.GetAll().ToList();
+                return RedirectToAction("Login", "Account");
             }
+
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var userRoles = await _userManager.GetRolesAsync(await _userManager.GetUserAsync(User));
+
+
+            if (userRoles.Contains("Admin"))
+            {
+                notes = _unitOfWork.Note.GetAll().ToList();
+            }
+            else
+            {
+                notes = _unitOfWork.Note.GetAll().Where(u=> u.CreatorId == userId).ToList();
+            }
+            
             return View(notes);
         }
-
 
         [HttpGet]
         public IActionResult Create()
@@ -35,38 +52,32 @@ namespace LogReg_Identity.Controllers
             return View();
         }
 
-
-        // To Create a new note data
-        //POST
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(NoteModel obj)
+        public async Task<IActionResult> Create(NoteVM noteVM)
         {
-            try
+            if (ModelState.IsValid)
             {
-                if (ModelState.IsValid)
-                {
-                    _noteRepository.Add(obj);
-                    _noteRepository.Save();
+                var user = await _userManager.GetUserAsync(User);
 
-                    TempData["successMessage"] = "A new Note added Successfully";
-                    return RedirectToAction(nameof(Index));
-                }
-                else
+                var note = new NoteModel
                 {
-                    TempData["errorMessage"] = "Model State is invalid";
-                    return View();
-                }
-            }
-            catch (Exception ex)
-            {
-                TempData["errorMessage"] = ex.Message;
-                return View();
-            }
+                    NoteTitle = noteVM.NoteTitle,
+                    NoteDescription = noteVM.NoteDescription,
+                    CreatedAt = DateTime.Now,
+                    NoteAuthor = $"{user.FirstName} {user.LastName}",
+                    CreatorId = user.Id
+                };
 
+                _unitOfWork.Note.Add(note);
+                _unitOfWork.Save();
+
+                TempData["successMessage"] = "A new note added successfully.";
+                return RedirectToAction(nameof(Index));
+            }
+            TempData["errorMessage"] = "Model state is invalid.";
+            return View(noteVM);
         }
-
-
 
         [HttpGet]
         public IActionResult Edit(int? id)
@@ -76,83 +87,73 @@ namespace LogReg_Identity.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            var note = _noteRepository.Get(u => u.NoteId == id);
-
-            if (note != null)
+            var note = _unitOfWork.Note.Get(u => u.NoteId == id);
+            if (note == null)
             {
-                return View(note);
+                TempData["errorMessage"] = $"Note details not found with Id : {id}";
+                return RedirectToAction(nameof(Index));
             }
 
-            TempData["errorMessage"] = $"note details not found with Id : {id}";
+            var noteVM = new NoteVM
+            {
+                NoteId = note.NoteId,
+                NoteTitle = note.NoteTitle,
+                NoteDescription = note.NoteDescription
+            };
 
-            return RedirectToAction(nameof(Index));
+            return View(noteVM);
         }
 
-
-
-        //POST
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(NoteModel note)
+        public async Task<IActionResult> Edit(NoteVM noteVM)
         {
-            try
+            if (ModelState.IsValid)
             {
-                if (ModelState.IsValid)
+                var existingNote = _unitOfWork.Note.Get(u => u.NoteId == noteVM.NoteId);
+                if (existingNote == null)
                 {
-                    var existingNote = _noteRepository.Get(u => u.NoteId == note.NoteId);
-                    if (existingNote == null)
-                    {
-                        return View(); // Handle the case where the entity is not found
-                    }
-
-                    // Update properties
-                    _noteRepository.Update(note);
-                    _noteRepository.Save();
-
-                    TempData["successMessage"] = "note updated successfully.";
-                    return RedirectToAction(nameof(Index));
-                    // return RedirectToAction(nameof(Index));
+                    return NotFound(); // Handle the case where the entity is not found
                 }
-                else
-                {
-                    TempData["errorMessage"] = "Model State is invalid";
-                    return View(note);
-                }
+
+                existingNote.NoteTitle = noteVM.NoteTitle;
+                existingNote.NoteDescription = noteVM.NoteDescription;
+
+                _unitOfWork.Note.Update(existingNote);
+                _unitOfWork.Save();
+
+                TempData["successMessage"] = "Note updated successfully.";
+                return RedirectToAction(nameof(Index));
             }
-            catch (System.Exception ex)
-            {
-                TempData["errorMessage"] = ex.Message;
-                return View();
-            }
+
+            TempData["errorMessage"] = "Model state is invalid.";
+            return View(noteVM);
         }
 
         [HttpPost]
-        public  IActionResult Delete(int noteId)
+        [ValidateAntiForgeryToken]
+        public IActionResult Delete(int noteId)
         {
             try
             {
-                var note = _noteRepository.Get(u => u.NoteId == noteId);
+                var note = _unitOfWork.Note.Get(u => u.NoteId == noteId);
                 if (note == null)
                 {
-                    return View(note);
+                    TempData["errorMessage"] = "Note not found.";
+                    return RedirectToAction(nameof(Index));
                 }
-                // To delete the file 
-                _noteRepository.Remove(note);
-                _noteRepository.Save();
 
-                TempData["successMessage"] = "note deleted successfully.";
+                _unitOfWork.Note.Remove(note);
+                _unitOfWork.Save();
+
+                TempData["successMessage"] = "Note deleted successfully.";
                 return RedirectToAction(nameof(Index));
-
             }
             catch (Exception ex)
             {
-                TempData["errorMessage"] = ex.Message;
-                return View();
+                TempData["errorMessage"] = $"An error occurred: {ex.Message}";
+                return RedirectToAction(nameof(Index));
             }
-
-
         }
-
-
     }
 }

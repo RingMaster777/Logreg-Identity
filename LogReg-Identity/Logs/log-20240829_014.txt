@@ -1,0 +1,4 @@
+2024-08-29 14:41:31.594 +06:00 [ERR] Failed executing DbCommand (19ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [Notes] ADD CONSTRAINT [FK_Notes_AspNetUsers_CreatorId] FOREIGN KEY ([CreatorId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE;
+2024-08-29 14:54:23.709 +06:00 [Error] Failed executing DbCommand ("14"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""ALTER TABLE [Notes] ADD CONSTRAINT [FK_Notes_AspNetUsers_CreatorId] FOREIGN KEY ([CreatorId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE;"

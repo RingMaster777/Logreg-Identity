@@ -1,4 +1,5 @@
-﻿@model NoteModel
+﻿@using LogReg_Identity.Models.ViewModel
+@model NoteVM
 @{
     ViewData["Title"] = "Create Employee";
 }
@@ -7,7 +8,7 @@
 </div>
 
 <div class="container border p-3 ">
-    <form asp-action="Create" method="post">
+    <form asp-asp-controller="Note"  asp-action="Create" method="post">
 
         @if (!ViewData.ModelState.IsValid)
         {

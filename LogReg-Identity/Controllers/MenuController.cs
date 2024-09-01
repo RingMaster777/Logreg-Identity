@@ -1,6 +1,8 @@
 ﻿using LogReg_Identity.Data;
 using LogReg_Identity.Models;
 using LogReg_Identity.Models.ViewModel;
+using LogReg_Identity.Repository;
+using LogReg_Identity.Repository.IRepository;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -11,22 +13,24 @@ namespace LogReg_Identity.Controllers
     public class MenuController : Controller
     {
 
-        private readonly ApplicationDbContext _db;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly SignInManager<ApplicationUser> _signInManager;
-        public MenuController(ApplicationDbContext db, SignInManager<ApplicationUser> signInManager)
+        private readonly RoleManager<IdentityRole> _roleManager;
+
+        public MenuController(IUnitOfWork unitOfWork, SignInManager<ApplicationUser> signInManager, RoleManager<IdentityRole> roleManager)
         {
             _signInManager = signInManager;
-            _db = db;
-
+            _unitOfWork = unitOfWork;
+            _roleManager = roleManager;
         }
-        public async Task<IActionResult> Index()
+
+
+        public IActionResult Index()
         {
             IEnumerable<MenuModel> Menus = null;
             if (_signInManager.IsSignedIn(User))
             {
-
-                Menus = await _db.Menus.ToListAsync();
-
+                Menus =  _unitOfWork.Menu.GetAll().ToList();
             }
             return View(Menus);
         }
@@ -35,7 +39,7 @@ namespace LogReg_Identity.Controllers
         [HttpGet]
         public async Task<IActionResult> Create()
         {
-            var roles = await _db.Roles.ToListAsync(); // Fetch roles from the database
+            var roles = await _roleManager.Roles.ToListAsync(); // Fetch roles from the database
             List<SelectListItem>  list = (from p in roles
                                           select new SelectListItem
                                           {
@@ -46,7 +50,7 @@ namespace LogReg_Identity.Controllers
 
 
 
-            var menus =  await _db.Menus.ToListAsync();
+            var menus = _unitOfWork.Menu.GetAll().ToList();
             List<SelectListItem> listofMenu = (from p in menus
                                                select new SelectListItem
                                                {
@@ -74,42 +78,33 @@ namespace LogReg_Identity.Controllers
                     MenuModel menuModel = new MenuModel();
 
                     menuModel.MenuName = obj.MenuName;
-
                     menuModel.MenuParentId =Int32.Parse(obj.ParentName);
-                    //Console.WriteLine(obj.AssignTo);
-                    _db.Menus.Add(menuModel);
-                    await _db.SaveChangesAsync();
 
 
-
+                    _unitOfWork.Menu.Add(menuModel);
+                    _unitOfWork.Save();
 
                     foreach (var item in obj.AssignTo)
                     {
                         MenuPermissionModel menuPermissionModel = new MenuPermissionModel();
                         menuPermissionModel.MenuId = menuModel.MenuId;
                         menuPermissionModel.RoleId = item;
-                        _db.MenuPermissions.Add(menuPermissionModel);
-                        await _db.SaveChangesAsync();
+                        _unitOfWork.MenuPermission.Add(menuPermissionModel);
+                        _unitOfWork.Save();
                     }
-
-                    
-
                     TempData["successMessage"] = "A new Menu added Successfully";
-
                     return RedirectToAction(nameof(Index));
-
                 }
                 else
                 {
                     TempData["errorMessage"] = "Model State is invalid";
-                    // If the model state is invalid, repopulate the roles dropdown
-                    var roles = await _db.Roles.ToListAsync();
+                    var roles = await _roleManager.Roles.ToListAsync();
                     ViewBag.Roles = new MultiSelectList(roles, "Id", "Name");
 
                     return View(obj);
                 }
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
 
                 TempData["errorMessage"] = ex.Message;
@@ -127,8 +122,7 @@ namespace LogReg_Identity.Controllers
             {
                 return RedirectToAction(nameof(Index));
             }
-
-            var Menu = await _db.Menus.FindAsync(id);
+            var Menu =  _unitOfWork.Menu.Get(u=> u.MenuId == id);
 
             if (Menu != null)
             {
@@ -152,24 +146,18 @@ namespace LogReg_Identity.Controllers
                 if (ModelState.IsValid)
                 {
 
-
-
-
-                    var existingMenu = await _db.Menus.FindAsync(Menu.MenuId);
+                    var existingMenu = _unitOfWork.Menu.Get(u=> u.MenuId == Menu.MenuId);
                     if (existingMenu == null)
                     {
                         return View(); // Handle the case where the entity is not found
                     }
 
                     // Update properties
-                    _db.Entry(existingMenu).CurrentValues.SetValues(Menu);
-
-                    await _db.SaveChangesAsync();
+                    _unitOfWork.Menu.Update(existingMenu, Menu);
+                    _unitOfWork.Save();
 
                     TempData["successMessage"] = "Menu updated successfully.";
                     return RedirectToAction(nameof(Index));
-
-
 
                     // return RedirectToAction(nameof(Index));
                 }
@@ -179,34 +167,38 @@ namespace LogReg_Identity.Controllers
                     return View(Menu);
                 }
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 TempData["errorMessage"] = ex.Message;
                 return View();
-
             }
-
-
         }
 
         [HttpPost]
         public async Task<IActionResult> Delete(int MenuId)
         {
-            var Menu = await _db.Menus.FindAsync(MenuId);
-
-            if (Menu == null)
+            try
             {
-                return View(Menu);
+                var Menu = _unitOfWork.Menu.Get(u => u.MenuId == MenuId);
+
+                if (Menu == null)
+                {
+                    return View(Menu);
+                }
+                // To delete the file 
+                _unitOfWork.Menu.Remove(Menu);
+                _unitOfWork.Save();
+
+                TempData["successMessage"] = "Menu deleted successfully.";
+                return RedirectToAction(nameof(Index));
+
             }
-            // To delete the file 
-            var result = _db.Menus.Remove(Menu);
+            catch (Exception ex)
+            {
+                TempData["errorMessage"] = ex.Message;
+                return View();
+            }
 
-            await _db.SaveChangesAsync();
-
-            TempData["successMessage"] = "Menu deleted successfully.";
-            return RedirectToAction(nameof(Index));
         }
-
-
     }
 }

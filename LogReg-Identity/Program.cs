@@ -29,7 +29,7 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.R
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
 
-builder.Services.AddScoped<INoteRepository, NoteRepository>();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -87,6 +87,5 @@ using (var scope = app.Services.CreateScope())
         }
     }
 }
-
 
 app.Run();

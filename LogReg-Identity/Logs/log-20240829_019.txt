@@ -1,0 +1,20 @@
+2024-08-29 15:03:10.253 +06:00 [ERR] Failed executing DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [AspNetRoles] (
+    [Id] nvarchar(450) NOT NULL,
+    [Name] nvarchar(256) NULL,
+    [NormalizedName] nvarchar(256) NULL,
+    [ConcurrencyStamp] nvarchar(max) NULL,
+    CONSTRAINT [PK_AspNetRoles] PRIMARY KEY ([Id])
+);
+2024-08-29 15:04:07.085 +06:00 [Error] Failed executing DbCommand ("30"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'RpId', N'PermissionId', N'RoleId') AND [object_id] = OBJECT_ID(N'[RolePermissions]'))
+    SET IDENTITY_INSERT [RolePermissions] ON;
+INSERT INTO [RolePermissions] ([RpId], [PermissionId], [RoleId])
+VALUES (1, 1, N'436d0dc3-12ea-4690-8164-219ff00789a4'),
+(2, 2, N'436d0dc3-12ea-4690-8164-219ff00789a4'),
+(3, 3, N'436d0dc3-12ea-4690-8164-219ff00789a4'),
+(4, 4, N'436d0dc3-12ea-4690-8164-219ff00789a4'),
+(5, 2, N'681b047a-2255-4262-ae12-95a311c498b9'),
+(6, 1, N'681b047a-2255-4262-ae12-95a311c498b9');
+IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'RpId', N'PermissionId', N'RoleId') AND [object_id] = OBJECT_ID(N'[RolePermissions]'))
+    SET IDENTITY_INSERT [RolePermissions] OFF;"

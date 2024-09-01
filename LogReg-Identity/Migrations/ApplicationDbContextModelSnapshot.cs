@@ -75,6 +75,17 @@ namespace LogReg_Identity.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("NoteId"));
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatorId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("NoteAuthor")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("NoteDescription")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -84,6 +95,8 @@ namespace LogReg_Identity.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("NoteId");
+
+                    b.HasIndex("CreatorId");
 
                     b.ToTable("Notes");
                 });
@@ -155,31 +168,37 @@ namespace LogReg_Identity.Migrations
                         {
                             RpId = 1,
                             PermissionId = 1,
-                            RoleId = "4f5e2154-92cd-4ad8-95b3-82b1a1acfed3"
+                            RoleId = "436d0dc3-12ea-4690-8164-219ff00789a4"
                         },
                         new
                         {
                             RpId = 2,
                             PermissionId = 2,
-                            RoleId = "4f5e2154-92cd-4ad8-95b3-82b1a1acfed3"
+                            RoleId = "436d0dc3-12ea-4690-8164-219ff00789a4"
                         },
                         new
                         {
                             RpId = 3,
                             PermissionId = 3,
-                            RoleId = "4f5e2154-92cd-4ad8-95b3-82b1a1acfed3"
+                            RoleId = "436d0dc3-12ea-4690-8164-219ff00789a4"
                         },
                         new
                         {
                             RpId = 4,
                             PermissionId = 4,
-                            RoleId = "4f5e2154-92cd-4ad8-95b3-82b1a1acfed3"
+                            RoleId = "436d0dc3-12ea-4690-8164-219ff00789a4"
                         },
                         new
                         {
                             RpId = 5,
                             PermissionId = 2,
-                            RoleId = "5bc96774-6718-44ff-857a-3644c8546ad0"
+                            RoleId = "681b047a-2255-4262-ae12-95a311c498b9"
+                        },
+                        new
+                        {
+                            RpId = 6,
+                            PermissionId = 1,
+                            RoleId = "681b047a-2255-4262-ae12-95a311c498b9"
                         });
                 });
 
@@ -424,6 +443,17 @@ namespace LogReg_Identity.Migrations
                     b.Navigation("Menu");
 
                     b.Navigation("Role");
+                });
+
+            modelBuilder.Entity("LogReg_Identity.Models.NoteModel", b =>
+                {
+                    b.HasOne("LogReg_Identity.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("CreatorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ApplicationUser");
                 });
 
             modelBuilder.Entity("LogReg_Identity.Models.RolePermissionModel", b =>

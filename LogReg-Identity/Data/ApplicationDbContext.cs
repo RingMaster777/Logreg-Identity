@@ -37,20 +37,20 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser>
         };
         builder.Entity<PermissionModel>().HasData(permissions);
 
-        // Assuming the existing Admin role has an ID of "1" and User role has an ID of "2"
-        // If the actual IDs are different, you need to replace them accordingly.
 
-        // Seed RolePermissions
+
+        ////Seed RolePermissions
         var rolePermissions = new List<RolePermissionModel>
         {
-            new RolePermissionModel {RpId=1 , RoleId = "4f5e2154-92cd-4ad8-95b3-82b1a1acfed3", PermissionId = 1 }, // Admin -> Create
-            new RolePermissionModel {RpId=2 ,  RoleId = "4f5e2154-92cd-4ad8-95b3-82b1a1acfed3", PermissionId = 2 }, // Admin -> Read
-            new RolePermissionModel {RpId=3,  RoleId = "4f5e2154-92cd-4ad8-95b3-82b1a1acfed3", PermissionId = 3 }, // Admin -> Update
-            new RolePermissionModel {RpId=4,  RoleId = "4f5e2154-92cd-4ad8-95b3-82b1a1acfed3", PermissionId = 4 }, // Admin -> Delete
-            new RolePermissionModel {RpId=5,  RoleId = "5bc96774-6718-44ff-857a-3644c8546ad0", PermissionId = 2 }, // User -> Read
+            new RolePermissionModel {RpId=1 , RoleId = "436d0dc3-12ea-4690-8164-219ff00789a4", PermissionId = 1 }, // Admin -> Create
+            new RolePermissionModel {RpId=2 , RoleId = "436d0dc3-12ea-4690-8164-219ff00789a4", PermissionId = 2 }, // Admin -> Read
+            new RolePermissionModel {RpId=3,  RoleId = "436d0dc3-12ea-4690-8164-219ff00789a4", PermissionId = 3 }, // Admin -> Update
+            new RolePermissionModel {RpId=4,  RoleId = "436d0dc3-12ea-4690-8164-219ff00789a4", PermissionId = 4 }, // Admin -> Delete
+            new RolePermissionModel {RpId=5,  RoleId = "681b047a-2255-4262-ae12-95a311c498b9", PermissionId = 2 }, // User -> Read
+            new RolePermissionModel {RpId=6,  RoleId = "681b047a-2255-4262-ae12-95a311c498b9", PermissionId = 1 }, // User -> Create
         };
         builder.Entity<RolePermissionModel>().HasData(rolePermissions);
 
- 
+
     }
 }

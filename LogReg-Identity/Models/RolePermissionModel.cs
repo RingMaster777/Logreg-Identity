@@ -9,8 +9,6 @@ namespace LogReg_Identity.Models
     {
         [Key]
         public int RpId { get; set; }
-
-        
         public string RoleId { get; set; }
         [ForeignKey(nameof(RoleId))]
         [ValidateNever]

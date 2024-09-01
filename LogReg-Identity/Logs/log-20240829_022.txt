@@ -1,0 +1,3 @@
+2024-08-29 15:39:51.517 +06:00 [INF] User created a new account with password.
+2024-08-29 15:39:52.321 +06:00 [INF] Home page accessed at "2024-08-29T09:39:52.3195789Z"
+2024-08-29 15:57:13.361 +06:00 [Information] Home page accessed at 08/29/2024 09:57:13

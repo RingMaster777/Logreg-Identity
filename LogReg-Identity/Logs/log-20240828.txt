@@ -1,4 +1,0 @@
-2024-08-28 09:59:12.615 +06:00 [Information] User logged in.
-2024-08-28 09:59:13.085 +06:00 [Information] Home page accessed at 08/28/2024 03:59:13
-2024-08-28 09:59:21.496 +06:00 [Information] User logged in.
-2024-08-28 09:59:21.583 +06:00 [Information] Home page accessed at 08/28/2024 03:59:21

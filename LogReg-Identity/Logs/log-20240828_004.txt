@@ -1,2 +1,0 @@
-2024-08-28 14:50:16.878 +06:00 [INF] Home page accessed at "2024-08-28T08:50:16.8725284Z"
-2024-08-28 14:52:40.563 +06:00 [Information] Home page accessed at 08/28/2024 08:52:40

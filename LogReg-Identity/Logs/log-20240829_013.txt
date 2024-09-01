@@ -1,0 +1,3 @@
+2024-08-29 14:35:15.198 +06:00 [INF] Home page accessed at "2024-08-29T08:35:15.1935075Z"
+2024-08-29 14:41:31.594 +06:00 [Error] Failed executing DbCommand ("19"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""ALTER TABLE [Notes] ADD CONSTRAINT [FK_Notes_AspNetUsers_CreatorId] FOREIGN KEY ([CreatorId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE;"
