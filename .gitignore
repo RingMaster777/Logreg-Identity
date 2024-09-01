@@ -2,6 +2,11 @@
 Logreg-Identity/bin/
 Logreg-Identity/obj/
 
+
+# ASP.NET Core Test
+Logreg-Identity-Test/bin/
+Logreg-Identity-Test/obj/
+
 # Visual Studio
 Logreg-Identity/.vs/
 Logreg-Identity/*.user
