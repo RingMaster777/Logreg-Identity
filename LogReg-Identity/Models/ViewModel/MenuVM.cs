@@ -17,7 +17,7 @@ namespace LogReg_Identity.Models.ViewModel
 
         [Required]
         [Display(Name = "Assign To")]
-        public List<string> AssignTo { get; set; }
+        public List<string> AssignTo { get; set; } = new List<string>();
 
     }
 }

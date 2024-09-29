@@ -1,6 +1,8 @@
 ﻿using LogReg_Identity.Data;
 using LogReg_Identity.Models;
+
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace LogReg_Identity.Middlewares
 {
@@ -25,9 +27,16 @@ namespace LogReg_Identity.Middlewares
 
 
 
-                var userPermissions = dbContext.RolePermissions
-                    .Where(rp => userRoles.Contains(rp.Role.Name))
-                    .Select(rp => rp.Permission.PermissionName)
+                var allRolePerms = await dbContext.RolePermissions
+                    .Include(rp => rp.Role)
+                    .Include(rp => rp.Permission)
+                    .ToListAsync();
+
+                var userPermissions = allRolePerms
+                    .Where(rp => rp.Role?.Name != null && userRoles.Contains(rp.Role.Name))
+                    .Select(rp => rp.Permission?.PermissionName)
+                    .Where(pn => pn != null)
+                    .Select(pn => pn!)
                     .ToList();
 
                 if (userPermissions.Contains(requestMethod))

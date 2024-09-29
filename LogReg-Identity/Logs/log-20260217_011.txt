@@ -1,0 +1,17 @@
+2026-02-17 18:03:05.559 +06:00 [INF] Database migrated successfully
+2026-02-17 18:04:23.860 +06:00 [WRN] Failed to determine the https port for redirect.
+2026-02-17 18:04:23.974 +06:00 [INF] Home page accessed at "2026-02-17T12:04:23.9727552Z"
+2026-02-17 18:04:34.771 +06:00 [INF] Home page accessed at "2026-02-17T12:04:34.7713247Z"
+2026-02-17 18:04:37.805 +06:00 [INF] Home page accessed at "2026-02-17T12:04:37.8048934Z"
+2026-02-17 21:15:39.024 +06:00 [Information] Database migrated successfully
+2026-02-17 21:20:41.776 +06:00 [Warning] Failed to determine the https port for redirect.
+2026-02-17 21:21:06.244 +06:00 [Information] User logged in.
+2026-02-17 21:21:06.730 +06:00 [Information] Home page accessed at 02/17/2026 15:21:06
+2026-02-17 21:21:16.248 +06:00 [Information] Home page accessed at 02/17/2026 15:21:16
+2026-02-17 21:21:27.445 +06:00 [Information] Home page accessed at 02/17/2026 15:21:27
+2026-02-17 21:21:30.235 +06:00 [Information] Home page accessed at 02/17/2026 15:21:30
+2026-02-17 21:21:40.153 +06:00 [Information] Home page accessed at 02/17/2026 15:21:40
+2026-02-17 21:23:33.076 +06:00 [Information] Home page accessed at 02/17/2026 15:23:33
+2026-02-17 21:23:35.405 +06:00 [Information] Home page accessed at 02/17/2026 15:23:35
+2026-02-17 21:23:36.337 +06:00 [Information] Home page accessed at 02/17/2026 15:23:36
+2026-02-17 21:23:37.383 +06:00 [Information] Home page accessed at 02/17/2026 15:23:37

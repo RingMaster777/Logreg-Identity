@@ -7,7 +7,7 @@ namespace LogReg_Identity.Repository.IRepository
         //T
 
         IEnumerable<T> GetAll();
-        T Get(Expression<Func<T, bool>> filter);
+        T? Get(Expression<Func<T, bool>> filter);
         void Add(T entity); 
         void Remove(T entity);
         void RemoveRange(IEnumerable<T> entity);

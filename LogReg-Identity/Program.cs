@@ -22,7 +22,7 @@ builder.Host.UseSerilog();
 
 var connectionString = builder.Configuration.GetConnectionString("ApplicationDbContextConnection") ?? throw new InvalidOperationException("Connection string 'ApplicationDbContextConnection' not found.");
 
-builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
+builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(connectionString));
 
 builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddRoles<IdentityRole>()
@@ -30,6 +30,10 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.R
 
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<LogReg_Identity.Repository.IRepository.IUserRepository, LogReg_Identity.Repository.UserRepository>();
+builder.Services.AddScoped<LogReg_Identity.Services.IUserService, LogReg_Identity.Services.UserService>();
+builder.Services.AddScoped<LogReg_Identity.Services.INoteService, LogReg_Identity.Services.NoteService>();
+builder.Services.AddScoped<LogReg_Identity.Services.IMenuService, LogReg_Identity.Services.MenuService>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -73,9 +77,21 @@ app.MapControllerRoute(
 app.MapRazorPages();
 
 
-// Seed roles
+// Apply migrations and seed data
 using (var scope = app.Services.CreateScope())
 {
+    var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+    try
+    {
+        // Apply any pending migrations
+        await dbContext.Database.MigrateAsync();
+        Log.Information("Database migrated successfully");
+    }
+    catch (Exception ex)
+    {
+        Log.Error(ex, "An error occurred while migrating the database");
+    }
+
     var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 
     var roles = new[] { "Admin", "Member" };
@@ -84,6 +100,7 @@ using (var scope = app.Services.CreateScope())
         if (!await roleManager.RoleExistsAsync(role))
         {
             await roleManager.CreateAsync(new IdentityRole(role));
+            Log.Information($"Role '{role}' created successfully");
         }
     }
 }

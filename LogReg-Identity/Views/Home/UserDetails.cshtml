@@ -23,7 +23,7 @@
             <p class="py-1"><strong>Assined Role:</strong> None</p>
         }
 
-        @if (await UserManager.IsInRoleAsync(await UserManager.GetUserAsync(User), "Admin"))
+        @if (ViewBag.IsAdmin == true)
         {
             <div class="d-flex justify-content-between">
 
@@ -34,7 +34,7 @@
 
             <form asp-action="AssignRole" method="post">
                 <input type="hidden" name="userId" value="@ViewBag.UserId" />
-                
+
                 <div class="py-3">
                     <label for="roleSelect" class="form-label">Change user Role:</label>
                     <select id="roleSelect" name="role" class="form-select">

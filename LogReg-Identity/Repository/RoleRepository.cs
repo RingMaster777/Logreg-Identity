@@ -12,7 +12,7 @@ namespace LogReg_Identity.Repository
             _roleManager = roleManager;
         }
 
-        public async Task<IdentityRole> GetByIdAsync(string id)
+        public async Task<IdentityRole?> GetByIdAsync(string id)
         {
             return await _roleManager.FindByIdAsync(id);
         }

@@ -12,13 +12,13 @@ namespace LogReg_Identity.Models
         public string RoleId { get; set; }
         [ForeignKey(nameof(RoleId))]
         [ValidateNever]
-        public IdentityRole Role { get; set; }
+        public IdentityRole? Role { get; set; }
 
         public int PermissionId { get; set; }
 
         [ForeignKey(nameof(PermissionId))]
         [ValidateNever]
-        public PermissionModel Permission { get; set; }
+        public PermissionModel? Permission { get; set; }
     }
 
 }

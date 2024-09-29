@@ -1,8 +1,10 @@
 using LogReg_Identity.Models;
+
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+
 using System.Diagnostics;
 
 namespace LogReg_Identity.Controllers
@@ -15,13 +17,15 @@ namespace LogReg_Identity.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly LogReg_Identity.Services.IUserService _userService;
 
-        public HomeController(ILogger<HomeController> logger, SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
+        public HomeController(ILogger<HomeController> logger, SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, LogReg_Identity.Services.IUserService userService)
         {
             _logger = logger;
             _signInManager = signInManager;
             _userManager = userManager;
             _roleManager = roleManager;
+            _userService = userService;
         }
 
         public async Task<IActionResult> Index()
@@ -29,15 +33,8 @@ namespace LogReg_Identity.Controllers
             if (_signInManager.IsSignedIn(User))
             {
 
-                var users = _userManager.Users.Select(u => new
-                {
-                    u.Id,
-                    u.FirstName,
-                    u.LastName,
-                    u.Email,
-                    Role = _userManager.GetRolesAsync(u).Result.FirstOrDefault()
-                }).ToList();
-                ViewBag.Users = users;
+                var usersWithRoles = await _userService.GetUsersWithRolesAsync();
+                ViewBag.Users = usersWithRoles;
 
             }
             _logger.LogInformation("Home page accessed at {Time}", DateTime.UtcNow);
@@ -48,7 +45,7 @@ namespace LogReg_Identity.Controllers
         public async Task<IActionResult> UserDetails(string? id)
         {
             // Fetch the user details using the user ID
-            var user = await _userManager.FindByIdAsync(id);
+            var user = await _userService.GetUserByIdAsync(id);
 
             if (user == null)
             {
@@ -56,8 +53,8 @@ namespace LogReg_Identity.Controllers
                 return NotFound();
             }
 
-            var roles = await _roleManager.Roles.Select(r => r.Name).ToListAsync();
-            var userRoles = await _userManager.GetRolesAsync(user);
+            var roles = await _userService.GetAllRoleNamesAsync();
+            var userRoles = await _userService.GetUserRolesAsync(user);
 
             // Optionally, pass the user details to the view
             ViewBag.Roles = roles;
@@ -66,6 +63,7 @@ namespace LogReg_Identity.Controllers
             ViewBag.UserEmail = user.Email;
             ViewBag.UserPhoneNumber = user.PhoneNumber;
             ViewBag.UserRoles = userRoles;
+            ViewBag.IsAdmin = userRoles.Contains("Admin");
 
             // Return a view with the user details (replace "UserDetails" with your actual view)
             return View(user);
@@ -79,7 +77,7 @@ namespace LogReg_Identity.Controllers
         {
             ViewBag.Id = id;
             return View();
-        }       
+        }
 
         [HttpPost]
         public IActionResult Delete(string id)
@@ -93,28 +91,15 @@ namespace LogReg_Identity.Controllers
 
         [HttpPost]
 
-        public async Task<IActionResult> AssignRole (string userId, string role)
+        public async Task<IActionResult> AssignRole(string userId, string role)
         {
-            if (string.IsNullOrEmpty(userId) || string.IsNullOrEmpty(role)) {
+            if (string.IsNullOrEmpty(userId) || string.IsNullOrEmpty(role))
+            {
                 return RedirectToAction("UserDetails", new { id = userId });
             }
 
 
-            var user = await _userManager.FindByIdAsync(userId);
-
-            if (user == null) {
-                return RedirectToAction("UserDetails", new { id = userId });
-            }
-
-            // Get current roles
-            var currentRoles = await _userManager.GetRolesAsync(user);
-
-            // Remove the user from all roles
-            await _userManager.RemoveFromRolesAsync(user, currentRoles);
-
-            // Add the new role
-            await _userManager.AddToRoleAsync(user, role);
-
+            var ok = await _userService.AssignRoleAsync(userId, role);
             return RedirectToAction("UserDetails", new { id = userId });
         }
 

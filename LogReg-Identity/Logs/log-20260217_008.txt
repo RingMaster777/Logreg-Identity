@@ -1,0 +1,26 @@
+2026-02-17 17:12:09.334 +06:00 [ERR] Failed executing DbCommand (61ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "RolePermissions" ("RpId", "PermissionId", "RoleId")
+VALUES (1, 1, '436d0dc3-12ea-4690-8164-219ff00789a4');
+INSERT INTO "RolePermissions" ("RpId", "PermissionId", "RoleId")
+VALUES (2, 2, '436d0dc3-12ea-4690-8164-219ff00789a4');
+INSERT INTO "RolePermissions" ("RpId", "PermissionId", "RoleId")
+VALUES (3, 3, '436d0dc3-12ea-4690-8164-219ff00789a4');
+INSERT INTO "RolePermissions" ("RpId", "PermissionId", "RoleId")
+VALUES (4, 4, '436d0dc3-12ea-4690-8164-219ff00789a4');
+INSERT INTO "RolePermissions" ("RpId", "PermissionId", "RoleId")
+VALUES (5, 2, '681b047a-2255-4262-ae12-95a311c498b9');
+INSERT INTO "RolePermissions" ("RpId", "PermissionId", "RoleId")
+VALUES (6, 1, '681b047a-2255-4262-ae12-95a311c498b9');
+2026-02-17 17:14:12.970 +06:00 [Error] Failed executing DbCommand ("33"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""INSERT INTO \"RolePermissions\" (\"RpId\", \"PermissionId\", \"RoleId\")
+VALUES (1, 1, '436d0dc3-12ea-4690-8164-219ff00789a4');
+INSERT INTO \"RolePermissions\" (\"RpId\", \"PermissionId\", \"RoleId\")
+VALUES (2, 2, '436d0dc3-12ea-4690-8164-219ff00789a4');
+INSERT INTO \"RolePermissions\" (\"RpId\", \"PermissionId\", \"RoleId\")
+VALUES (3, 3, '436d0dc3-12ea-4690-8164-219ff00789a4');
+INSERT INTO \"RolePermissions\" (\"RpId\", \"PermissionId\", \"RoleId\")
+VALUES (4, 4, '436d0dc3-12ea-4690-8164-219ff00789a4');
+INSERT INTO \"RolePermissions\" (\"RpId\", \"PermissionId\", \"RoleId\")
+VALUES (5, 2, '681b047a-2255-4262-ae12-95a311c498b9');
+INSERT INTO \"RolePermissions\" (\"RpId\", \"PermissionId\", \"RoleId\")
+VALUES (6, 1, '681b047a-2255-4262-ae12-95a311c498b9');"

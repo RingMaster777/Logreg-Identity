@@ -16,12 +16,12 @@ namespace LogReg_Identity.Models
         public int MenuId { get; set; }
         [ForeignKey(nameof(MenuId))]
         [ValidateNever]
-        public MenuModel Menu { get; set; }
+        public MenuModel? Menu { get; set; }
 
         [Required]
         public string RoleId { get; set; }
         [ForeignKey(nameof(RoleId))]
         [ValidateNever]
-        public IdentityRole Role { get; set; }
+        public IdentityRole? Role { get; set; }
     }
 }

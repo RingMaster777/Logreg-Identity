@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -14,7 +15,7 @@ namespace LogReg_Identity.Models
         public string? MenuName { get; set; }
 
         [Required]
-        public int? MenuParentId { get; set; }
+        public int MenuParentId { get; set; }
 
     }
 }

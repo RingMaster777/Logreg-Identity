@@ -3,46 +3,46 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+
 using LogReg_Identity.Models;
 using LogReg_Identity.Models.ViewModel;
 using LogReg_Identity.Repository.IRepository;
+
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+
+// this controller is created to handle all the notes available in the system
 
 namespace LogReg_Identity.Controllers
 {
     public class NoteController : Controller
     {
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly LogReg_Identity.Services.INoteService _noteService;
         private readonly UserManager<ApplicationUser> _userManager;
 
-        public NoteController(IUnitOfWork unitOfWork, UserManager<ApplicationUser> userManager)
+        public NoteController(LogReg_Identity.Services.INoteService noteService, UserManager<ApplicationUser> userManager)
         {
-            _unitOfWork = unitOfWork;
+            _noteService = noteService;
             _userManager = userManager;
         }
 
         public async Task<IActionResult> Index()
         {
-            IEnumerable<NoteModel> notes = null;
+            IEnumerable<NoteModel> notes = Enumerable.Empty<NoteModel>();
             if (!User.Identity.IsAuthenticated)
             {
                 return RedirectToAction("Login", "Account");
             }
 
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var userRoles = await _userManager.GetRolesAsync(await _userManager.GetUserAsync(User));
-
-
-            if (userRoles.Contains("Admin"))
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
             {
-                notes = _unitOfWork.Note.GetAll().ToList();
+                return RedirectToAction("Login", "Account");
             }
-            else
-            {
-                notes = _unitOfWork.Note.GetAll().Where(u=> u.CreatorId == userId).ToList();
-            }
-            
+
+            var userRoles = await _userManager.GetRolesAsync(user);
+            notes = await _noteService.GetNotesForUserAsync(user, userRoles);
+
             return View(notes);
         }
 
@@ -59,19 +59,13 @@ namespace LogReg_Identity.Controllers
             if (ModelState.IsValid)
             {
                 var user = await _userManager.GetUserAsync(User);
-
-                var note = new NoteModel
+                if (user == null)
                 {
-                    NoteTitle = noteVM.NoteTitle,
-                    NoteDescription = noteVM.NoteDescription,
-                    CreatedAt = DateTime.Now,
-                    NoteAuthor = $"{user.FirstName} {user.LastName}",
-                    CreatorId = user.Id
-                };
+                    TempData["errorMessage"] = "Unable to resolve current user.";
+                    return RedirectToAction("Index");
+                }
 
-                _unitOfWork.Note.Add(note);
-                _unitOfWork.Save();
-
+                await _noteService.CreateNoteAsync(noteVM, user);
                 TempData["successMessage"] = "A new note added successfully.";
                 return RedirectToAction(nameof(Index));
             }
@@ -80,14 +74,14 @@ namespace LogReg_Identity.Controllers
         }
 
         [HttpGet]
-        public IActionResult Edit(int? id)
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return RedirectToAction(nameof(Index));
             }
 
-            var note = _unitOfWork.Note.Get(u => u.NoteId == id);
+            var note = await _noteService.GetByIdAsync(id.Value);
             if (note == null)
             {
                 TempData["errorMessage"] = $"Note details not found with Id : {id}";
@@ -110,17 +104,11 @@ namespace LogReg_Identity.Controllers
         {
             if (ModelState.IsValid)
             {
-                var existingNote = _unitOfWork.Note.Get(u => u.NoteId == noteVM.NoteId);
-                if (existingNote == null)
-                {
-                    return NotFound(); // Handle the case where the entity is not found
-                }
-
+                var existingNote = await _noteService.GetByIdAsync(noteVM.NoteId);
+                if (existingNote == null) return NotFound();
                 existingNote.NoteTitle = noteVM.NoteTitle;
                 existingNote.NoteDescription = noteVM.NoteDescription;
-
-                _unitOfWork.Note.Update(existingNote);
-                _unitOfWork.Save();
+                await _noteService.UpdateNoteAsync(existingNote);
 
                 TempData["successMessage"] = "Note updated successfully.";
                 return RedirectToAction(nameof(Index));
@@ -132,20 +120,11 @@ namespace LogReg_Identity.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Delete(int noteId)
+        public async Task<IActionResult> Delete(int noteId)
         {
             try
             {
-                var note = _unitOfWork.Note.Get(u => u.NoteId == noteId);
-                if (note == null)
-                {
-                    TempData["errorMessage"] = "Note not found.";
-                    return RedirectToAction(nameof(Index));
-                }
-
-                _unitOfWork.Note.Remove(note);
-                _unitOfWork.Save();
-
+                await _noteService.DeleteNoteAsync(noteId);
                 TempData["successMessage"] = "Note deleted successfully.";
                 return RedirectToAction(nameof(Index));
             }

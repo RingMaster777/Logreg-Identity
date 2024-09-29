@@ -1,0 +1,35 @@
+2026-02-17 17:09:24.304 +06:00 [ERR] Failed executing DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "AspNetUsers" (
+    "Id" text NOT NULL,
+    "Discriminator" character varying(21) NOT NULL,
+    "FirstName" nvarchar(100),
+    "LastName" nvarchar(100),
+    "UserName" character varying(256),
+    "NormalizedUserName" character varying(256),
+    "Email" character varying(256),
+    "NormalizedEmail" character varying(256),
+    "EmailConfirmed" boolean NOT NULL,
+    "PasswordHash" text,
+    "SecurityStamp" text,
+    "ConcurrencyStamp" text,
+    "PhoneNumber" text,
+    "PhoneNumberConfirmed" boolean NOT NULL,
+    "TwoFactorEnabled" boolean NOT NULL,
+    "LockoutEnd" timestamp with time zone,
+    "LockoutEnabled" boolean NOT NULL,
+    "AccessFailedCount" integer NOT NULL,
+    CONSTRAINT "PK_AspNetUsers" PRIMARY KEY ("Id")
+);
+2026-02-17 17:12:09.334 +06:00 [Error] Failed executing DbCommand ("61"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""INSERT INTO \"RolePermissions\" (\"RpId\", \"PermissionId\", \"RoleId\")
+VALUES (1, 1, '436d0dc3-12ea-4690-8164-219ff00789a4');
+INSERT INTO \"RolePermissions\" (\"RpId\", \"PermissionId\", \"RoleId\")
+VALUES (2, 2, '436d0dc3-12ea-4690-8164-219ff00789a4');
+INSERT INTO \"RolePermissions\" (\"RpId\", \"PermissionId\", \"RoleId\")
+VALUES (3, 3, '436d0dc3-12ea-4690-8164-219ff00789a4');
+INSERT INTO \"RolePermissions\" (\"RpId\", \"PermissionId\", \"RoleId\")
+VALUES (4, 4, '436d0dc3-12ea-4690-8164-219ff00789a4');
+INSERT INTO \"RolePermissions\" (\"RpId\", \"PermissionId\", \"RoleId\")
+VALUES (5, 2, '681b047a-2255-4262-ae12-95a311c498b9');
+INSERT INTO \"RolePermissions\" (\"RpId\", \"PermissionId\", \"RoleId\")
+VALUES (6, 1, '681b047a-2255-4262-ae12-95a311c498b9');"
