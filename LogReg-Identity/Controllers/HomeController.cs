@@ -37,6 +37,8 @@ namespace LogReg_Identity.Controllers
                     u.Email,
                     Role = _userManager.GetRolesAsync(u).Result.FirstOrDefault()
                 }).ToList();
+				
+				
                 ViewBag.Users = users;
 
             }
