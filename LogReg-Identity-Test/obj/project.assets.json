@@ -8344,11 +8344,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Rashik_Mahmud\\VS\\LogReg-Identity\\LogReg-Identity-Test\\LogReg-Identity-Test.csproj",
+      "projectUniqueName": "D:\\Rashik_Mahmud\\VS\\TEST\\Logreg-Identity\\LogReg-Identity-Test\\LogReg-Identity-Test.csproj",
       "projectName": "LogReg-Identity-Test",
-      "projectPath": "D:\\Rashik_Mahmud\\VS\\LogReg-Identity\\LogReg-Identity-Test\\LogReg-Identity-Test.csproj",
+      "projectPath": "D:\\Rashik_Mahmud\\VS\\TEST\\Logreg-Identity\\LogReg-Identity-Test\\LogReg-Identity-Test.csproj",
       "packagesPath": "C:\\Users\\Rashik Mahmud\\.nuget\\packages\\",
-      "outputPath": "D:\\Rashik_Mahmud\\VS\\LogReg-Identity\\LogReg-Identity-Test\\obj\\",
+      "outputPath": "D:\\Rashik_Mahmud\\VS\\TEST\\Logreg-Identity\\LogReg-Identity-Test\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -8369,8 +8369,8 @@
         "net10.0": {
           "targetAlias": "net10.0",
           "projectReferences": {
-            "D:\\Rashik_Mahmud\\VS\\LogReg-Identity\\LogReg-Identity\\LogReg-Identity.csproj": {
-              "projectPath": "D:\\Rashik_Mahmud\\VS\\LogReg-Identity\\LogReg-Identity\\LogReg-Identity.csproj"
+            "D:\\Rashik_Mahmud\\VS\\TEST\\Logreg-Identity\\LogReg-Identity\\LogReg-Identity.csproj": {
+              "projectPath": "D:\\Rashik_Mahmud\\VS\\TEST\\Logreg-Identity\\LogReg-Identity\\LogReg-Identity.csproj"
             }
           }
         }

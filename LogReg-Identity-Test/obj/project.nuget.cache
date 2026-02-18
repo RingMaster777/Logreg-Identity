@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "hutt5TWTPzk=",
+  "dgSpecHash": "cvVEPTGLS6g=",
   "success": true,
-  "projectFilePath": "D:\\Rashik_Mahmud\\VS\\LogReg-Identity\\LogReg-Identity-Test\\LogReg-Identity-Test.csproj",
+  "projectFilePath": "D:\\Rashik_Mahmud\\VS\\TEST\\Logreg-Identity\\LogReg-Identity-Test\\LogReg-Identity-Test.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Rashik Mahmud\\.nuget\\packages\\castle.core\\5.1.1\\castle.core.5.1.1.nupkg.sha512",
     "C:\\Users\\Rashik Mahmud\\.nuget\\packages\\coverlet.collector\\6.0.2\\coverlet.collector.6.0.2.nupkg.sha512",
