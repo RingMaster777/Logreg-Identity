@@ -1,6 +1,8 @@
 ﻿using LogReg_Identity.Data;
 using LogReg_Identity.Repository.IRepository;
+
 using Microsoft.EntityFrameworkCore;
+
 using System.Linq.Expressions;
 
 namespace LogReg_Identity.Repository
@@ -20,13 +22,13 @@ namespace LogReg_Identity.Repository
         }
         public void Add(T entity)
         {
-            dbSet.Add(entity); 
+            dbSet.Add(entity);
         }
 
         public T? Get(Expression<Func<T, bool>> filter)
         {
             IQueryable<T> query = dbSet;
-            query =  query.Where(filter);
+            query = query.Where(filter);
             return query.FirstOrDefault();
         }
 

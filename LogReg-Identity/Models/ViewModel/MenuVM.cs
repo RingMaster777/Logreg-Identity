@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
+
 using System.ComponentModel.DataAnnotations;
 
 namespace LogReg_Identity.Models.ViewModel

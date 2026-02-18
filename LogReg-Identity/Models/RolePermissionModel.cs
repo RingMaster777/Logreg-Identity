@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -9,7 +10,7 @@ namespace LogReg_Identity.Models
     {
         [Key]
         public int RpId { get; set; }
-        public string RoleId { get; set; }
+        public string RoleId { get; set; } = string.Empty;
         [ForeignKey(nameof(RoleId))]
         [ValidateNever]
         public IdentityRole? Role { get; set; }

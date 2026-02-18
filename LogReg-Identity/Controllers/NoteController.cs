@@ -29,7 +29,7 @@ namespace LogReg_Identity.Controllers
         public async Task<IActionResult> Index()
         {
             IEnumerable<NoteModel> notes = Enumerable.Empty<NoteModel>();
-            if (!User.Identity.IsAuthenticated)
+            if (!(User?.Identity?.IsAuthenticated ?? false))
             {
                 return RedirectToAction("Login", "Account");
             }

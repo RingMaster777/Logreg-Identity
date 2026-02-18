@@ -44,6 +44,7 @@ namespace LogReg_Identity.Controllers
         [HttpGet]
         public async Task<IActionResult> UserDetails(string? id)
         {
+            if (string.IsNullOrWhiteSpace(id)) return BadRequest();
             // Fetch the user details using the user ID
             var user = await _userService.GetUserByIdAsync(id);
 

@@ -17,10 +17,6 @@ public class AccountControllerTests
     private readonly Mock<ILogger<LoginModel>> _mockLogger;
     private readonly LoginModel _loginModel;
 
-
-    private readonly Mock<ILogger<RegisterModel>> _mockRegisterLogger;
-    private readonly RegisterModel _registerModel;
-
     private readonly Mock<IEmailSender> _mockEmailSender;
     private readonly Mock<IUserStore<ApplicationUser>> _mockUserStore;
 
@@ -46,14 +42,14 @@ public class AccountControllerTests
         _mockUserManager = new Mock<UserManager<ApplicationUser>>(
             _mockUserStore.Object,
             //_mockEmailStore.Object,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null
+            null!,
+            null!,
+            null!,
+            null!,
+            null!,
+            null!,
+            null!,
+            null!
         );
 
         // Mock SignInManager
@@ -61,17 +57,16 @@ public class AccountControllerTests
             _mockUserManager.Object,
             Mock.Of<IHttpContextAccessor>(),
             Mock.Of<IUserClaimsPrincipalFactory<ApplicationUser>>(),
-            null,
-            null,
-            null,
-            null
+            null!,
+            null!,
+            null!,
+            null!
         );
 
         // Mock Logger for LoginModel
         _mockLogger = new Mock<ILogger<LoginModel>>();
 
-        // Mock Logger for RegisterModel
-        _mockRegisterLogger = new Mock<ILogger<RegisterModel>>();
+        // Mock Logger for RegisterModel (unused)
 
         // Mock EmailSender
         _mockEmailSender = new Mock<IEmailSender>();

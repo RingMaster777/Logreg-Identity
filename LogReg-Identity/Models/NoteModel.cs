@@ -17,13 +17,13 @@ namespace LogReg_Identity.Models
         public string? NoteDescription { get; set; }
 
         [Required]
-        public string NoteAuthor { get; set; }
+        public string NoteAuthor { get; set; } = string.Empty;
 
         [Required]
         public DateTime CreatedAt { get; set; } = DateTime.Now;
 
         [Required]
-        public string CreatorId { get; set; }
+        public string CreatorId { get; set; } = string.Empty;
 
         [ForeignKey(nameof(CreatorId))]
         [ValidateNever]
